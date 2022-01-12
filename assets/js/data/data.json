@@ -1,0 +1,76 @@
+{
+    "wij": {
+        "2017": {
+            "Dixisset": {
+                "RUS": 1,
+                "CHN": 2
+            },
+            "Xiaomi": {
+                "RUS": 1,
+                "CHN": 13
+            }
+        },
+        "2018": {
+            "Dixisset": {
+                "RUS": 3,
+                "CHN": 5
+            },
+            "Xiaomi": {
+                "RUS": 1,
+                "CHN": 18
+            }
+        },
+        "2019": {
+            "Dixisset": {
+                "RUS": 6,
+                "CHN": 11
+            },
+            "Xiaomi": {
+                "RUS": 2,
+                "CHN": 22
+            }
+        },
+        "2020": {
+            "Dixisset": {
+                "RUS": 10,
+                "CHN": 18
+            },
+            "Xiaomi": {
+                "RUS": 2,
+                "CHN": 27
+            }
+        },
+        "2021": {
+            "Dixisset": {
+                "RUS": 16,
+                "CHN": 28
+            },
+            "Xiaomi": {
+                "RUS": 3,
+                "CHN": 31
+            }
+        }
+    },
+    "wi": {
+        "2017": {
+            "Dixisset": 3,
+            "Xiaomi": 14
+        },
+        "2018": {
+            "Dixisset": 8,
+            "Xiaomi": 19
+        },
+        "2019": {
+            "Dixisset": 17,
+            "Xiaomi": 24
+        },
+        "2020": {
+            "Dixisset": 28,
+            "Xiaomi": 29
+        },
+        "2021": {
+            "Dixisset": 44,
+            "Xiaomi": 34
+        }
+    }
+}
