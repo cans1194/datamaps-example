@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+</head>
+<body>
+  <script src="http://d3js.org/d3.v3.min.js"></script>
+  <script src="http://d3js.org/topojson.v1.min.js"></script>
+  <script src="assets/js/datamaps.world.min.js"></script>
+
+  <div id="container" style="position: relative; width: 1080px; height: 900px;"></div>
+
+  <script>
+    var postprocessData = function (data) {
+      const years = Object.keys(data)
+      const products = Object.keys(data[years[0]])
+      const segments = Object.keys(data[years[0]][products[0]])
+      var result = [];
+      for (const segmentKey of segments) {
+        const dataset = []
+        for (const productKey of products) {
+          for (const yearKey of years) {
+            dataset.push({
+              product: productKey,
+              year: yearKey,
+              value: data[yearKey][productKey][segmentKey]
+            })
+          }
+        }
+        result.push({
+          data: dataset,
+          centered: segmentKey.toLocaleUpperCase(),
+          fillKey: 'active',
+          radius: 10
+        })
+      }
+      return result;
+    };
+
+    var createTable = function (data) {
+      const keys = Object.keys(data.data[0]);
+      const header = '<thead><tr>' + keys.map(key => `<th>${key}</th>`).join('') + '</thead></tr>';
+      const body = '<tbody>' + data.data.map(row => `<tr>${Object.values(row).map(cell => `<td>${cell}</td>`).join('')}</tr>`).join('');
+      const table = `<table>${header}${body}</table>`
+      return '<div class="hoverinfo">' + table + '</div>';
+    }
+
+    var map = new Datamap({
+      element: document.getElementById('container'),
+      scope: "world",
+      geographyConfig: {
+        popupOnHover: true,
+        highlightOnHover: true
+      },
+      bubblesConfig: {
+        highlightBorderColor: '#FFFFFF',
+        popupTemplate: function (geography, data) {
+          return createTable(data);
+        }
+      },
+      fills: {
+        defaultFill: '#0079c1',
+        active: '#0056a6'
+      }
+    });
+
+    fetch ('https://raw.githubusercontent.com/cans1194/datamaps-example/main/assets/js/data/data.json')
+      .then(function (response) {
+        return response;
+      })
+      .then(function (data) {
+        return data.json();
+      })
+      .then(function (bubbles) {
+        map.bubbles(
+          postprocessData(bubbles.wij), {}
+        )
+      })
+  </script>
+</body>
